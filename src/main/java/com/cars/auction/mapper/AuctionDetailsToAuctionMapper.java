@@ -20,11 +20,11 @@ public class AuctionDetailsToAuctionMapper {
             return null;
 
         Auction auction = new Auction();
-        auction.setItemCode(auctionDetailDTO.getItemCode());
-        LocalDateTime startTime = LocalDateTime.now();
-        LocalDateTime  endTime = startTime.plus(auctionDetailDTO.getDuration(), ChronoUnit.HOURS);
+        LocalDateTime startTime = LocalDateTime.now().plusSeconds(5);
+        LocalDateTime  endTime = startTime.plus(auctionDetailDTO.getDuration(), ChronoUnit.SECONDS);
         auction.setStartTime(startTime);
         auction.setEndTime(endTime);
+        auction.setItemCode(auctionDetailDTO.getItemCode());
         auction.setMinimumBasePrice(auctionDetailDTO.getMinimumBasePrice());
         auction.setStepRate(auctionDetailDTO.getStepRate());
         auction.setStatus(auctionDetailDTO.getStatus());

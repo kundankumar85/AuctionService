@@ -1,5 +1,6 @@
 package com.cars.auction.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,9 @@ public class Auction {
     private int id;
     private double minimumBasePrice;
     private double stepRate;
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
     private LocalDateTime startTime;
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
     private LocalDateTime endTime;
     private String status;
     private String itemCode;

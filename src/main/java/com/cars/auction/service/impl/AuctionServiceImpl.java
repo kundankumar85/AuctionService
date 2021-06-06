@@ -8,6 +8,8 @@ import com.cars.auction.service.AuctionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -23,5 +25,11 @@ public class AuctionServiceImpl implements AuctionService {
         Auction auction = auctionDetailsToAuctionMapper.mapAuctionDetailsToAuction(auctionDetailDTO);
         log.info("Saving auction details");
         return auctionRepository.save(auction);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void deactivateAuction(Integer auctionId, String status) {
+        auctionRepository.deactivateAuction(auctionId,status);
     }
 }

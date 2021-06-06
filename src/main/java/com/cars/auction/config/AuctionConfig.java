@@ -5,10 +5,10 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableWebMvc
+@EnableTransactionManagement
 @EnableJpaRepositories(basePackages="com.cars.auction.repository" )
 public class AuctionConfig {
 

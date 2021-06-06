@@ -23,7 +23,7 @@ public class ItemController {
 
 
     @PostMapping
-    ResponseEntity<Item> create(@RequestBody @Valid ItemDTO itemDto){
+    public ResponseEntity<Item> create(@RequestBody @Valid ItemDTO itemDto){
         log.info("Create item");
         return ResponseEntity.status(HttpStatus.OK).body(itemService.create(itemDto));
     }

@@ -6,4 +6,6 @@ import com.cars.auction.entity.Auction;
 public interface AuctionService {
 
     Auction startAuction(AuctionDetailDTO auctionDetailDTO);
+
+    void deactivateAuction(Integer auctionId, String name);
 }
