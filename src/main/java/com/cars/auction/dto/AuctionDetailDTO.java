@@ -9,10 +9,13 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemDTO {
+public class AuctionDetailDTO {
 
-    @NotEmpty(message = "Item's code '${validatedValue}' can not be empty.")
+    @NotEmpty
     String itemCode;
-    @NotEmpty(message = "Item's name '${validatedValue}' can not be empty.")
-    String itemName;
+    double minimumBasePrice;
+    double stepRate;
+    int duration;
+    String status;
+
 }

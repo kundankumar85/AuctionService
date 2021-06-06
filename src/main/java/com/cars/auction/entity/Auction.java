@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,15 +19,10 @@ public class Auction {
     private int id;
     private double minimumBasePrice;
     private double stepRate;
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
-    @Temporal(TemporalType.DATE)
-    private Date endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String status;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_code",referencedColumnName = "itemCode")
-    private Item item;
+    private String itemCode;
 
     @OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "bid_id",referencedColumnName = "id")
