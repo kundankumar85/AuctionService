@@ -15,20 +15,21 @@ import java.util.Objects;
 public class AuctionDetailsToAuctionMapper {
     private final ItemRepository itemRepository;
 
-    public Auction mapAuctionDetailsToAuction(AuctionDetailDTO auctionDetailDTO){
+    public Auction map(AuctionDetailDTO auctionDetailDTO){
         if(Objects.isNull(auctionDetailDTO))
             return null;
 
-        Auction auction = new Auction();
+
         LocalDateTime startTime = LocalDateTime.now().plusSeconds(5);
         LocalDateTime  endTime = startTime.plus(auctionDetailDTO.getDuration(), ChronoUnit.SECONDS);
-        auction.setStartTime(startTime);
-        auction.setEndTime(endTime);
-        auction.setItemCode(auctionDetailDTO.getItemCode());
-        auction.setMinimumBasePrice(auctionDetailDTO.getMinimumBasePrice());
-        auction.setStepRate(auctionDetailDTO.getStepRate());
-        auction.setStatus(auctionDetailDTO.getStatus());
-        return auction;
+        return Auction.builder().startTime(startTime)
+                .endTime(endTime)
+                .itemCode(auctionDetailDTO.getItemCode())
+                .minimumBasePrice(auctionDetailDTO.getMinimumBasePrice())
+                .stepRate(auctionDetailDTO.getStepRate())
+                .status(auctionDetailDTO.getStatus())
+                .build();
+
 
     }
 }

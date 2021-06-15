@@ -1,6 +1,7 @@
 package com.cars.auction.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,22 +9,24 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bid {
+public class Bids {
 
     @Id
     @GeneratedValue
     @Column(name = "bid_id")
     private Integer bidId;
+    @Column(name="user_id")
     private String userId;
+    @Column(name="bid_amount")
     private double bidAmount;
-    private String status;
+    @Column(name="item_code")
+    private String itemCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_code",referencedColumnName = "itemCode")
-    private Item item;
-
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="auction_id", nullable=false)
     private Auction auction;
+
 }
