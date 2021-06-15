@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @Builder
 public class BidDetailDTO {
-    @NotEmpty
     String itemCode;
     @NotEmpty
     String userId;

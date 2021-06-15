@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -50,7 +51,7 @@ public class AuctionServiceImpl implements AuctionService {
             currentAuctionDTO.setItemCode(auction.getItemCode());
             currentAuctionDTO.setStepRate(auction.getStepRate());
             Bids maxBidsAmount = bidRepository.findFirstByAuctionAuctionIdOrderByBidAmountDesc(auction.getAuctionId());
-            currentAuctionDTO.setHighestBidAmount(maxBidsAmount.getBidAmount());
+            currentAuctionDTO.setHighestBidAmount(Objects.isNull(maxBidsAmount)?0:maxBidsAmount.getBidAmount());
             return currentAuctionDTO;
         }).collect(Collectors.toList());
     }

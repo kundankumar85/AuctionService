@@ -43,7 +43,7 @@ public class BidValidatorImpl extends AbstractValidator<BidDetailDTO, Boolean> {
         double nextBidMinValue = (Objects.isNull(maxBidsAmount) || maxBidsAmount.getBidAmount() == 0 )?auction.getMinimumBasePrice():(maxBidsAmount.getBidAmount()+stepRate);
 
         if(bidDetailDTO.getBidAmount() < nextBidMinValue){
-            throw new BidNotValidException("Bids amount "+bidDetailDTO.getBidAmount()+" should be more that "+(maxBidsAmount.getBidAmount() + stepRate));
+            throw new BidNotValidException("Bids amount "+bidDetailDTO.getBidAmount()+" should be more or equal to "+(maxBidsAmount.getBidAmount() + stepRate));
         }
     }
 
